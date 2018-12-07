@@ -1,0 +1,24 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+
+    Contact Page
+
+{% endblock %}
+
+{% block content %}
+
+    <h1>Contact Page</h1>
+    <a href={{ path_for('home.index')}}><button>Home</button></a>
+
+
+    <form action="{{'contact'}}" method="POST">
+        <label for="email"> Email</label>
+        <input type="email" name="email" id="email">
+        <button type="submit"> Send </button>
+    </form>
+    
+    
+
+
+{% endblock %}

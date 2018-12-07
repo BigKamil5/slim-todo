@@ -1,0 +1,61 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+
+    Homki
+
+{% endblock %}
+
+{% block content %}
+
+{% if tasks %}
+
+    <div class="row justify-content-center">
+
+        <div class="card w-50">
+            <div class="card-header">
+                Task List
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                        {% for task in tasks %}
+                        <li class="list-group-item d-flex flex-row justify-content-between" >
+                            <span>{{task.title}}</span>
+                            
+                            <form action="{{ path_for('tasks.delete', { 'id': task.id }) }}" method="POST" autocomplete="off">
+                                    <input type="hidden" name="_METHOD" value="DELETE">
+                                    <button type="submit" value="Add Task" class="btn btn-secondary btn-sm">Delete</button>  
+                                    {{ csrf.field | raw }}
+                            </form>
+
+                            <a href="{{ path_for('tasks.update', { 'id': task.id }) }}" class="btn btn-secondary btn-sm btn-info">Update</a>
+
+                        </li>
+                        {% endfor %}
+                    <li class="list-group-item">
+                    
+                            <form action="{{ path_for('tasks.add')}}" method="post" autocomplete="off">
+                                    <div class="form-group">
+                                        <input type="text" name="task" id="task" placeholder="@ New task" class="form-control {{ errors.task ? 'is-invalid' : '' }} ">
+            
+                                        {% if errors.task %}
+                                                <span class="invalid-feedback">{{ errors.task | first }}</span>
+                                        {% endif %}
+                                        
+                                    </div>
+
+                                    <button type="submit" value="Add Task" class="btn btn-primary">Add Task</button>  
+
+                                    {{ csrf.field | raw }}
+                            </form>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    {% endif %}
+
+
+{% endblock %}

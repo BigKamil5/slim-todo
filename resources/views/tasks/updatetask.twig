@@ -1,0 +1,35 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+
+    Homki
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+        <div class="card w-50">
+            <div class="card-header">
+                Update Task 
+            </div>
+            <div class="card-body">
+                    <form action="{{ path_for('tasks.update', { 'id': task.id }) }}" method="POST" autocomplete="off">
+                        <div class="form-group">
+                            <input type="hidden" name="_METHOD" value="PUT">
+                            <input type="text" value="{{ task.title }}" name="task" id="task" class="form-control {{ errors.task ? 'is-invalid' : '' }}">
+                            {{ csrf.field | raw }}
+
+                            {% if errors.task %}
+                                <span class="invalid-feedback">{{ errors.task | first }}</span>
+                            {% endif %}
+                        </div>
+                        <button type="submit" value="Update Task" class="btn btn-primary">Update Task</button>  
+                    </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

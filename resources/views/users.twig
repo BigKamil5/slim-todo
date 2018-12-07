@@ -1,0 +1,14 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+
+    Users
+
+{% endblock %}
+
+{% block content %}
+
+    Hello {{users}}
+    <a href={{path_for('home.index')}}><button>homik</button></a>
+
+{% endblock %}

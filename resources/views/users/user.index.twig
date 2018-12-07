@@ -1,0 +1,32 @@
+{% extends 'layouts/app.twig' %}
+
+{% block title %}
+
+    Users List
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+            {% for user in users %}
+                <div class="card">
+                    <a href = "{{ path_for('articles.show', { id:article.id }) }}">
+                        <div class="card-header">
+                            {{user.username}}
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <p>{{user.name}} {% if user.email %}/ {{user.email}} {% endif %}</p>
+                        <p>{{user.getPorperName()}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}
